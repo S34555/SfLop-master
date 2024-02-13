@@ -8,26 +8,29 @@
     {% block stylesheets %}{% endblock %}
     <style>
         /* Style pour le menu déroulant */
-        .dropdown {
-            position: relative;
-            display: inline-block;
-        }
         .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
-        }
-        .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-        }
-        .dropdown-content a:hover {background-color: #f1f1f1;}
-        .dropdown:hover .dropdown-content {display: block;}
+    display: none;
+    position: absolute;
+    background-color: #007bff; /* Bleu spécifié pour le fond */
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: white; /* Texte blanc pour les liens */
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #0056b3; /* Bleu plus foncé pour l'effet de survol */
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
     </style>
 </head>
 <body>
@@ -47,7 +50,7 @@
                 </div>
                 <a href="swipe">Finder</a>
             {% endif %}
-            <a href="">À propos</a>
+            <a href="{{ path('contact') }}">Contactez-Nous</a>
         </nav>
     </header>
     
