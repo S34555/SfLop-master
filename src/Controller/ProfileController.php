@@ -36,6 +36,8 @@ class ProfileController extends AbstractController
         $userId = $user->getId_user();
 
         if ($request->isMethod('POST')) {
+            // Récupérer les nouvelles valeurs du formulaire
+            $newUsername = $request->request->get('username');
             $languageId = $request->request->get('language');
             $playstyleId = $request->request->get('playstyle');
             $mainRoleId = $request->request->get('mainrole');
@@ -43,20 +45,31 @@ class ProfileController extends AbstractController
             $rankId = $request->request->get('rank');
             $frequencyPlayId = $request->request->get('frequencyplay');
 
+            // Gestion de l'upload de l'avatar
+            $avatarFile = $request->files->get('avatar');
+            if ($avatarFile) {
+                $avatarFileName = $this->generateUniqueFileName().'.'.$avatarFile->guessExtension();
+                // Déplacez le fichier dans le répertoire public/img/avatar
+                $avatarFile->move($this->getParameter('avatar_directory'), $avatarFileName);
+
+                // Mettez à jour le chemin de l'avatar dans la base de données
+                $updateAvatarStmt = $this->pdo->prepare('UPDATE user SET avatar = ? WHERE id_user = ?');
+                $updateAvatarStmt->execute([$avatarFileName, $userId]);
+            }
+
             // Mise à jour des informations de l'utilisateur dans la base de données
             $updateStmt = $this->pdo->prepare(
-                'UPDATE user SET language_id = ?, play_style_id = ?, main_role_id = ?, main_champion_id = ?, rank_id = ?, frequency_play_id = ? WHERE id_user = ?'
+                'UPDATE user SET username = ?, language_id = ?, play_style_id = ?, main_role_id = ?, main_champion_id = ?, rank_id = ?, frequency_play_id = ? WHERE id_user = ?'
             );
             $updateStmt->execute([
-                $languageId, $playstyleId, $mainRoleId, $mainChampionId, $rankId, $frequencyPlayId, $userId
+                $newUsername, $languageId, $playstyleId, $mainRoleId, $mainChampionId, $rankId, $frequencyPlayId, $userId
             ]);
 
             $this->addFlash('success', 'Profil mis à jour avec succès');
-            //return $this->redirectToRoute('app_profile');
         }
 
-        // Récupérer les valeurs actuelles de l'utilisateur
-        $userValuesStmt = $this->pdo->prepare('SELECT language_id, play_style_id, main_role_id, main_champion_id, rank_id, frequency_play_id FROM user WHERE id_user = ?');
+        // Récupérer les valeurs actuelles de l'utilisateur, y compris l'avatar
+        $userValuesStmt = $this->pdo->prepare('SELECT language_id, play_style_id, main_role_id, main_champion_id, rank_id, frequency_play_id, username, avatar FROM user WHERE id_user = ?');
         $userValuesStmt->execute([$userId]);
         $userValues = $userValuesStmt->fetch(PDO::FETCH_ASSOC);
 
@@ -89,6 +102,10 @@ class ProfileController extends AbstractController
             'userValues' => $userValues
         ]);
     }
+
+    private function generateUniqueFileName()
+    {
+        // Génération d'un nom de fichier unique
+        return md5(uniqid());
+    }
 }
-
-

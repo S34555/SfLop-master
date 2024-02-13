@@ -17,13 +17,13 @@ body {
 }
 
 .hero h1 {
-    font-size: 36px;
+    font-size: 39px;
     margin-bottom: 49px;
     color: #fff;
 }
 
 .hero p {
-    font-size: 18px;
+    font-size: 19px;
     color: #ccc;
     margin-bottom: 40px;
     
@@ -123,6 +123,13 @@ body {
     height: 100%; /* Hauteur de l'image égale à celle du conteneur */
     background-color: rgba(0, 0, 0, 0.5); /* Couleur de fond semi-transparente pour assombrir l'image */
     z-index: 0; /* Empilement en arrière-plan par rapport au texte */
+}
+
+.feature-icon {
+    width: 50px; /* Ajustez la taille selon vos besoins */
+    height: auto;
+    display: block;
+    margin: 0 auto; /* Centre l'icône dans le carré */
 }
 
 /* Responsive design */

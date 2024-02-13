@@ -33,8 +33,13 @@ body, html {
     margin-bottom: 1rem;
 }
 
-.form-control, .btn-upload, .btn-update {
-    width: calc(100% - 20px); /* Ajuster la largeur en fonction du padding */
+.form-group input[type="text"],
+.form-group select,
+.form-group input[type="file"],
+.file-upload-wrapper label,
+.btn-update {
+    width: 100%; /* Assure que tous les champs prennent toute la largeur disponible */
+    box-sizing: border-box; /* Inclut padding et border dans la largeur totale */
     padding: 10px;
     margin-bottom: 1rem;
     border-radius: 4px;
@@ -47,7 +52,36 @@ body, html {
     color: #bbb;
 }
 
-.btn-upload, .btn-update {
+.file-upload-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: block; /* Modifié pour occuper toute la ligne */
+    text-align: center; /* Centrer le label */
+}
+
+.file-upload-wrapper label {
+    background-color: #007bff; /* Couleur de fond pour le bouton */
+    color: #121212; /* Couleur du texte pour le bouton */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: 900;
+    display: block; /* S'assurer qu'il se comporte comme un block */
+}
+
+.file-upload-wrapper label:hover {
+    background-color: #e6a00f; /* Couleur de fond au survol */
+}
+
+.file-upload-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+
+.btn-update {
     background-color: #007bff; /* Couleur de fond pour les boutons */
     color: #121212; /* Couleur du texte pour les boutons */
     border: none;
@@ -56,7 +90,7 @@ body, html {
     font-weight: 900;
 }
 
-.btn-upload:hover, .btn-update:hover {
+.btn-update:hover {
     background-color: #e6a00f; /* Couleur de fond au survol */
 }
 

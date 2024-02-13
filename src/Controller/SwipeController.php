@@ -7,20 +7,20 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Doctrine\DBAL\Connection; // Import the Connection class if you're using DBAL
+use Doctrine\DBAL\Connection;
 
 class SwipeController extends AbstractController
 {
     /**
      * @Route("/swipe", name="swipe")
      */
-        public function index(Connection $connection): Response
+    public function index(Connection $connection): Response
     {
-        // Execute the SQL query to retrieve user data with champion names and other fields
         $sql = '
             SELECT
                 u.id_user,
                 u.username,
+                u.avatar,  -- Inclure le champ avatar ici
                 mc.name AS main_champion_name,
                 r.name AS rank_name,
                 ps.name AS play_style_name,
@@ -37,15 +37,8 @@ class SwipeController extends AbstractController
         ';
         $usersWithDetails = $connection->executeQuery($sql)->fetchAllAssociative();
 
-        // Render the Twig template and pass the data
         return $this->render('swipe/index.html.twig', [
             'usersWithDetails' => $usersWithDetails,
         ]);
     }
 }
-
-
-
-
-
-

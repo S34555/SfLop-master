@@ -1,6 +1,6 @@
-{# templates/swipe/index.html.twig #}
-
 {% extends 'base.html.twig' %}
+
+{% block title %}League of Personality - Accueil{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -11,59 +11,118 @@
             flex-wrap: wrap;
             justify-content: center;
             background-color: #061120;
-            margin-top: 20px; /* Marge supplémentaire en haut pour l'esthétique */
-        }
-
-        .card {
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-            transition: 0.3s;
-            width: calc(35% - 20px); /* Ajustement pour 2 cartes par ligne avec marge */
-            border-radius: 10px;
-            margin: 15px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: #0f1b29; /* Couleur de fond bleu nuit */
-            color: #fff; /* Couleur du texte blanc */
-            padding: 20px; /* Espacement interne */
+            padding: 20px;
         }
 
         .card h5 {
-            margin-top: 0; /* Suppression de la marge supérieure pour le titre */
-            font-size: 20px; /* Taille de police du titre */
-            font-weight: bold; /* Gras pour le titre */
+            font-size: 20px; /* Taille de police plus grande pour le titre */
+            color: #f0b90b; /* Couleur d'accentuation pour le titre */
+            margin-bottom: 15px;
+            font-weight: 700; /* Gras pour le titre */
         }
 
         .card p {
-            margin: 10px 0; /* Marge autour des paragraphes */
+            font-size: 16px;
+            color: #a9bacc; /* Couleur de texte légère pour les détails */
+            margin-bottom: 10px; /* Espacement entre les paragraphes */
+            padding: 0 10px; /* Padding pour un meilleur contrôle de la largeur du texte */
+        }
+
+        .card p:first-child {
+            font-weight: 600; /* Mettre en évidence le premier paragraphe */
+            color: #ffffff;
+        }
+
+        .card {
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease-in-out;
+            width: calc(40% - 20px);
+            border-radius: 8px;
+            margin: 10px;
+            background: #1d344d;
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
 
         .card:hover {
-            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-            transform: scale(1.05); /* Effet d'agrandissement au survol */
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.6);
         }
 
-        /* Responsive layout - makes a one column-layout for very small screens */
+        .feature-icon {
+    width: 50px; /* Ajustez la taille selon vos besoins */
+    height: auto;
+    display: block;
+    margin: 0 auto; /* Centre l'icône dans le carré */
+}
+
+        .profile-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            object-fit: cover;
+            border: 3px solid #f0b90b;
+        }
+
+        .card h5 {
+            font-size: 25px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            font-size: 17px;
+            line-height: 1.6;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .icon {
+            width: 16px;
+            height: 16px;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        .profile-image {
+            width: 100px; /* Taille de l'avatar ajustée */
+            height: auto; /* Maintient l'avatar carré */
+            border-radius: 50%; /* Rend l'avatar rond */
+            margin-bottom: 15px; /* Espace sous l'avatar */
+            object-fit: cover; /* Assure que l'image remplit l'espace */
+            border: 2px solid #f0b90b; /* Bordure pour l'avatar */
+        }
+
         @media screen and (max-width: 600px) {
             .card {
-                width: calc(100% - 20px); /* Cartes pleine largeur avec marge */
+                width: calc(100% - 20px);
             }
         }
     </style>
 {% endblock %}
 
 {% block body %}
-    <div class="card-deck"> 
+    <div class="card-deck">
         {% for user in usersWithDetails %}
             <div class="card">
+            {% if user.avatar %}
+                    <img src="{{ asset('img/avatar/' ~ user.avatar) }}" alt="Avatar de {{ user.username }}" class="profile-image" />
+                {% else %}
+                    <img src="{{ asset('img/default.png') }}" alt="Avatar par défaut" class="profile-image"/>
+                {% endif %}
                 <h5>{{ user.username | default('Nom d\'utilisateur non défini') }}</h5>
-                <p>Champion Principal: {{ user.main_champion_name | default('Non défini') }}</p>
-                <p>Rang: {{ user.rank_name | default('Non défini') }}</p>
-                <p>Style de Jeu: {{ user.play_style_name | default('Non défini') }}</p>
-                <p>Rôle Principal: {{ user.main_role_name | default('Non défini') }}</p>
-                <p>Fréquence de Jeu: {{ user.frequency_play_name | default('Non défini') }}</p>
-                <p>Langue: {{ user.language_name | default('Non défini') }}</p>
+                <p><img src="{{ asset('/img/sorcier.png') }}" alt="Champion" class="icon">Champion Principal: {{ user.main_champion_name | default('Non défini') }}</p>
+                <p><img src="{{ asset('/img/niveau.png') }}" alt="Rang" class="icon">Rang: {{ user.rank_name | default('Non défini') }}</p>
+                <p><img src="{{ asset('/img/game_style.png') }}" alt="Style de jeu" class="icon">Style de Jeu: {{ user.play_style_name | default('Non défini') }}</p>
+                <p><img src="{{ asset('/img/lane.png') }}" alt="Rôle" class="icon">Rôle Principal: {{ user.main_role_name | default('Non défini') }}</p>
+                <p><img src="{{ asset('/img/frequency.png') }}" alt="Fréquence" class="icon">Fréquence de Jeu: {{ user.frequency_play_name | default('Non défini') }}</p>
+                <p><img src="{{ asset('/img/langue.png') }}" alt="Langue" class="icon">Langue: {{ user.language_name | default('Non défini') }}</p>
             </div>
         {% endfor %}
     </div>
