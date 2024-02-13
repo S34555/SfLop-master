@@ -1,0 +1,78 @@
+/* Style global */
+body, html {
+    height: 100%;
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #061120; /* Fond sombre */
+    color: white; /* Texte en clair pour la lisibilité */
+}
+
+.profile-edit-container {
+    width: 100%;
+    max-width: 400px; /* Largeur maximale du conteneur */
+    margin: auto;
+    margin-top: 3em;
+    margin-bottom: 3em;
+    padding: 2rem;
+    background-color: #1d344d; /* Fond du conteneur */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5); /* Ombre portée pour le relief */
+}
+
+.avatar-upload-section {
+    text-align: center; /* Centrer le contenu de la section avatar */
+    margin-bottom: 2rem;
+}
+
+.avatar-placeholder img {
+    width: 100px; /* Ajuster selon la taille souhaitée */
+    height: 100px; /* Ajuster selon la taille souhaitée */
+    border-radius: 50%; /* Rendre l'image ronde */
+    background-color: #222; /* Fond pour l'avatar */
+    border: 3px solid #f0b90b; /* Bordure dorée */
+    margin-bottom: 1rem;
+}
+
+.form-control, .btn-upload, .btn-update {
+    width: calc(100% - 20px); /* Ajuster la largeur en fonction du padding */
+    padding: 10px;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+    border: 1px solid #555;
+    background-color: #4a5d71;
+    color: white;
+}
+
+.form-control::placeholder {
+    color: #bbb;
+}
+
+.btn-upload, .btn-update {
+    background-color: #007bff; /* Couleur de fond pour les boutons */
+    color: #121212; /* Couleur du texte pour les boutons */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: 900;
+}
+
+.btn-upload:hover, .btn-update:hover {
+    background-color: #e6a00f; /* Couleur de fond au survol */
+}
+
+.profile-details-section {
+    margin-bottom: 1rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: .5rem;
+}
+
+/* Ajoutez ici des media queries pour les ajustements responsives si nécessaire */
+@media (max-width: 768px) {
+    .profile-edit-container {
+        padding: 1rem;
+        margin: 20px; /* Ajoutez un peu d'espace sur les petits écrans */
+    }
+}

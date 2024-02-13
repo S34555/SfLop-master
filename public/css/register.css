@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300');
+
+/* Thème principal bleu nuit */
+body {
+    font-family: "Roboto", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #061120; /* Bleu nuit */
+}
+
+/* Conteneur principal */
+.register-container {
+    width: 360px;
+    padding: 8% 0 0;
+    margin: auto;
+    height: 27em;
+}
+
+/* Style du formulaire */
+.form {
+    position: relative;
+    z-index: 1;
+    background: #1d344d; /* Bleu un peu plus clair */
+    max-width: 360px;
+    margin: 11em auto;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    border-radius: 7px;
+}
+
+/* Style des champs de formulaire */
+.form .input {
+    background-color: #4a5d71; /* Couleur de fond des inputs */
+    color: white; /* Couleur du texte des inputs */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    width: calc(100% - 20px);
+}
+
+
+/* Style des champs du formulaire */
+.form .form-control {
+    font-family: "Roboto", sans-serif;
+    outline: 0;
+    width: 100%;
+    border: 0;
+    padding: 3px;
+    box-sizing: border-box;
+    font-size: 18px;
+}
+
+/* Bouton d'envoi */
+.form .btn {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #007bff; /* Jaune */
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    cursor: pointer;
+    margin-top: 12px;
+    transition: all 0.3s ease;
+    border-radius: 5px;
+    font-weight: 900;
+}
+
+.form .btn:hover {
+    background: #a07c05; /* Jaune plus foncé au survol */
+}
+
+/* Titre */
+h1 {
+    color: white; /* Jaune */
+    text-align: center;
+    font-weight: 300;
+}
+
+/* Messages d'erreur */
+.error {
+    color: #EF3B3A; /* Rouge */
+    font-size: 14px;
+    margin-bottom: 15px;
+}

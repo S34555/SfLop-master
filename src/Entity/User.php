@@ -1,0 +1,167 @@
+<?php
+
+namespace App\Entity;
+
+use App\Repository\UserRepository;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
+
+#[ORM\Entity(repositoryClass: UserRepository::class)]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
+class User implements UserInterface, PasswordAuthenticatedUserInterface
+{
+    #[ORM\Id]
+    #[ORM\GeneratedValue]
+    #[ORM\Column]
+    private ?int $id_user = null;
+
+    #[ORM\Column(type: 'string', length: 50)]
+    private ?string $username = null;
+
+
+    public function getUsername(): ?string
+    {
+        return $this->username;
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    #[ORM\Column(length: 180, unique: true)]
+    private ?string $email = null;
+
+    #[ORM\Column]
+    private array $roles = [];
+
+    /**
+     * @var string The hashed password
+     */
+    #[ORM\Column]
+    private ?string $password = null;
+
+    public function getId_User(): ?int
+    {
+        return $this->id_user;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(string $email): static
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->email;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): static
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @see PasswordAuthenticatedUserInterface
+     */
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): static
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials(): void
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
+    }
+
+     /**
+     * @ORM\ManyToOne(targetEntity=MainChampion::class)
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $mainChampion;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Rank::class)
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $rank;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=PlayStyle::class)
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $playStyle;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=MainRole::class)
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $mainRole;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=FrequencyPlay::class)
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $frequencyPlay;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Language::class)
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $language;
+
+    // ... getters et setters pour MainChampion ...
+
+    public function getMainChampion(): ?MainChampion
+    {
+        return $this->mainChampion;
+    }
+
+    public function setMainChampion(?MainChampion $mainChampion): self
+    {
+        $this->mainChampion = $mainChampion;
+        return $this;
+    }
+    
+}

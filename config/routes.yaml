@@ -1,0 +1,37 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+
+    # config/routes.yaml
+register:
+    path: /register
+    controller: App\Controller\YourRegisterController::index
+
+home:
+    path: /
+    controller: App\Controller\HomeController::index
+
+login:
+    path: /login
+    controller: App\Controller\SecurityController.php::index
+
+contact:
+    path: /contact
+    controller : App\Controller\ContactController.php::index
+
+profile_index:
+    path: /profile
+    controller: App\Controller\ProfileController::index
+
+swipe:
+    path: /swipe
+    controller: App\Controller\SwipeController::index
+
+
+user_info:
+    path: /swipe
+    controller: App\Controller\SwipeController::getUserInfo
+    methods: ['GET']
+

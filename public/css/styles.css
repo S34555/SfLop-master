@@ -1,0 +1,188 @@
+/* Thème principal bleu nuit */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #0f1b29; 
+    color: #fff;
+}
+
+/* Styles pour la section hero */
+.hero {
+    text-align: center;
+    padding: 50px 0;
+    background-color: #143258; 
+    background-image: url(../img/planet-1702788.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 300px;
+}
+
+.hero h1 {
+    font-size: 36px;
+    margin-bottom: 49px;
+    color: #fff;
+}
+
+.hero p {
+    font-size: 18px;
+    color: #ccc;
+    margin-bottom: 40px;
+    
+}
+
+.btn-hero {
+    display: inline-block;
+    padding: 15px 30px; 
+    background-color: #142d4c;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: larger;
+    transition: background-color 0.3s ease;
+}
+
+.btn-hero:hover {
+    background-color: #0056b3;
+}
+
+/* Styles pour la section make-friends */
+.make-friends {
+    padding: 50px 0;
+    background-color: #0c2040; /* Bleu moins nuit */
+}
+
+.make-friends h2 {
+    font-size: 24px;
+    color: #fff;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.make-friends p {
+    font-size: 16px;
+    color: #ccc;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.allcards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    width: 300px;
+    background-color: #1d344d;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.features {
+    margin-bottom: 20px;
+}
+
+.feature-item {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    background-color: #007bff;
+    margin-right: 10px;
+}
+
+.pcard {
+    font-size: 16px;
+    color: #fff;
+}
+
+/* Modification pour placer l'image en arrière-plan */
+.make-friends {
+    padding: 50px 0;
+    background-color: #0c2040; /* Bleu moins nuit */
+    background-size: cover; /* Redimensionnement de l'image pour couvrir tout le conteneur */
+    background-position: center; /* Positionnement de l'image au centre */
+    position: relative; /* Position relative pour positionner le texte par rapport à l'image */
+}
+
+.make-friends h2,
+.make-friends p {
+    color: #fff; /* Couleur du texte en blanc pour contraster avec l'image de fond */
+    text-align: center; /* Centrage du texte */
+    position: relative; /* Position relative pour permettre le positionnement absolu */
+    z-index: 1; /* Empilement du texte au-dessus de l'image */
+}
+
+/* Styles pour positionner le texte au-dessus de l'image */
+.make-friends:before {
+    content: ''; /* Ajout d'un pseudo-élément pour servir de fond à l'image */
+    position: absolute; /* Position absolue par rapport à son parent */
+    top: 0; /* Positionnement en haut du conteneur */
+    left: 0; /* Positionnement à gauche du conteneur */
+    width: 100%; /* Largeur de l'image égale à celle du conteneur */
+    height: 100%; /* Hauteur de l'image égale à celle du conteneur */
+    background-color: rgba(0, 0, 0, 0.5); /* Couleur de fond semi-transparente pour assombrir l'image */
+    z-index: 0; /* Empilement en arrière-plan par rapport au texte */
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 28px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .btn-hero {
+        padding: 10px 20px;
+    }
+
+    .make-friends h2 {
+        font-size: 20px;
+    }
+
+    .make-friends p {
+        font-size: 14px;
+    }
+
+    .card {
+        width: calc(50% - 40px);
+    }
+}
+
+@media (max-width: 576px) {
+    .hero {
+        height: auto;
+        padding: 30px 0;
+    }
+
+    .hero h1 {
+        font-size: 24px;
+    }
+
+    .hero p {
+        font-size: 14px;
+    }
+
+    .btn-hero {
+        padding: 8px 16px;
+    }
+
+    .make-friends {
+        padding: 30px 0;
+    }
+
+    .make-friends h2 {
+        font-size: 18px;
+    }
+
+    .make-friends p {
+        font-size: 12px;
+    }
+
+    .card {
+        width: calc(100% - 40px);
+    }
+}

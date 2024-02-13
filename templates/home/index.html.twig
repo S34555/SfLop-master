@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}League of Personality - Accueil{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/styles.css') }}" />
+{% endblock %}
+
+{% block body %}
+<main>
+    <section class="hero">
+        <h1>League of Personality</h1>
+        <p>Rejoignez la communauté de League of Personalities, où chaque clic vous rapproche de votre coéquipier idéal et transforme votre passion pour le jeu en une aventure épique à deux. Inscrivez-vous maintenant et découvrez une synergie parfaite.</p>
+        
+        {% if not app.user %}
+            <a href="{{ path('register') }}" class="btn btn-hero">S'inscrire Maintenant</a>
+        {% endif %}
+    </section>
+
+    <!-- ... Le reste de votre contenu ... -->
+    <section class="make-friends">
+        <h2>Fais toi de nouveaux amis sur LOP</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit...</p>
+
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="allcards">
+                    <div class="card">
+                        <div class="features">
+                            <div class="feature-item">
+                            </div>
+                            <p class="pcard">Trouve  quelqu’un qui a la même personnalité que toi</p>
+                            <!-- ... other feature items ... -->
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="features">
+                            <div class="feature-item">
+                            </div>
+                            <p class="pcard">Trouve quelqu’un qui a le même style de jeu que toi</p>
+                            <!-- ... other feature items ... -->
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="features">
+                            <div class="feature-item">
+                            </div>
+                            <p class="pcard">Trouve  quelqu’un qui a le même niveau que toi</p>
+                            <!-- ... other feature items ... -->
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="features">
+                            <div class="feature-item">
+                            </div>
+                            <p class="pcard">Trouve  quelqu’un qui  une lane qui te complète</p>
+                            <!-- ... other feature items ... -->
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="features">
+                            <div class="feature-item">
+                            </div>
+                            <p class="pcard">Trouve  quelqu’un qui  joue des champions qui te correspond</p>
+                            <!-- ... other feature items ... -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+{% endblock %}

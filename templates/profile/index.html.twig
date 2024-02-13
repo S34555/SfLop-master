@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/profile.css') }}"> 
+{% endblock %}
+
+{% block body %}
+<div class="profile-edit-container">
+    <div class="avatar-upload-section">
+        <div class="avatar-placeholder">
+            <img src="{{ asset('img/test.png') }}" alt="Default Avatar" />
+        </div>
+        <input type="text" class="form-control" placeholder="Nom d'utilisateur" name="username" value="{{ app.user ? app.user.username : '' }}" />
+        <button class="btn-upload">Télécharger</button>
+    </div>
+
+    <div class="profile-details-section">
+        <form method="post" action="{{ path('app_profile') }}">
+            <div class="form-group">
+                <label for="language">Langue</label>
+                <select id="language" name="language" class="form-control">
+                    {% for language in languages %}
+                        <option value="{{ language.id_languages }}" {% if language.id_languages == userValues.language_id %}selected{% endif %}>{{ language.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="playstyle">Style de jeu</label>
+                <select id="playstyle" name="playstyle" class="form-control">
+                    {% for playstyle in playStyles %}
+                        <option value="{{ playstyle.id_play_styles }}" {% if playstyle.id_play_styles == userValues.play_style_id %}selected{% endif %}>{{ playstyle.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="mainrole">Rôle principal</label>
+                <select id="mainrole" name="mainrole" class="form-control">
+                    {% for mainrole in mainRoles %}
+                         <option value="{{ mainrole.id_main_roles }}" {% if mainrole.id_main_roles == userValues.main_role_id %}selected{% endif %}>{{ mainrole.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="mainchampion">Champion principal</label>
+                <select id="mainchampion" name="mainchampion" class="form-control">
+                    {% for mainchampion in mainChampions %}
+                        <option value="{{ mainchampion.id_main_champions }}" {% if mainchampion.id_main_champions == userValues.main_champion_id %}selected{% endif %}>{{ mainchampion.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="rank">Rang</label>
+                <select id="rank" name="rank" class="form-control">
+                    {% for rank in ranks %}
+                        <option value="{{ rank.id_ranks }}" {% if rank.id_ranks == userValues.rank_id %}selected{% endif %}>{{ rank.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="frequencyplay">Fréquence de jeu</label>
+                <select id="frequencyplay" name="frequencyplay" class="form-control">
+                    {% for frequencyplay in frequencyPlays %}
+                         <option value="{{ frequencyplay.id_frequency_play }}" {% if frequencyplay.id_frequency_play         == userValues.frequency_play_id %}selected{% endif %}>{{ frequencyplay.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <button type="submit" class="btn-update">Actualisation</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
