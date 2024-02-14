@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}League of Personality - Accueil{% endblock %}
+{% block title %}League of Personality - Finder{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -99,11 +99,32 @@
             border: 2px solid #f0b90b; /* Bordure pour l'avatar */
         }
 
-        @media screen and (max-width: 600px) {
-            .card {
-                width: calc(100% - 20px);
-            }
+        .star-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 30px; /* Ajustez la taille selon vos besoins */
+            height: auto;
         }
+
+        @media screen and (max-width: 768px) {
+           
+        .card {
+        width: calc(100% - 20px); /* Cartes pleine largeur sur petits écrans */
+    }
+
+    .card h5, .card p {
+        font-size: 14px; /* Réduction de la taille du texte */
+    }
+
+    .profile-image {
+        width: 80px; /* Réduction de la taille de l'avatar */
+    }
+
+    .star-icon {
+        width: 25px; /* Réduction de la taille de l'icône étoile */
+    }
+}
     </style>
 {% endblock %}
 
@@ -111,7 +132,7 @@
     <div class="card-deck">
         {% for user in usersWithDetails %}
             <div class="card">
-            {% if user.avatar %}
+                {% if user.avatar %}
                     <img src="{{ asset('img/avatar/' ~ user.avatar) }}" alt="Avatar de {{ user.username }}" class="profile-image" />
                 {% else %}
                     <img src="{{ asset('img/default.png') }}" alt="Avatar par défaut" class="profile-image"/>

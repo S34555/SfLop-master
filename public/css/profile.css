@@ -102,11 +102,29 @@ body, html {
     display: block;
     margin-bottom: .5rem;
 }
-
-/* Ajoutez ici des media queries pour les ajustements responsives si nécessaire */
+    
+/* Media queries pour les ajustements responsives */
 @media (max-width: 768px) {
     .profile-edit-container {
         padding: 1rem;
-        margin: 20px; /* Ajoutez un peu d'espace sur les petits écrans */
+        margin: 1rem; /* Réduction de l'espace sur les petits écrans */
+    }
+
+    .avatar-placeholder img {
+        width: 80px; /* Réduction de la taille de l'avatar */
+        height: 80px;
+    }
+
+    .form-group input[type="text"],
+    .form-group select,
+    .form-group input[type="file"],
+    .file-upload-wrapper label,
+    .btn-update {
+        padding: 8px; /* Réduction du padding */
+    }
+
+    .file-upload-wrapper label,
+    .btn-update {
+        font-size: 14px; /* Réduction de la taille de police des boutons */
     }
 }
